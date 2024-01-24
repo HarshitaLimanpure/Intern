@@ -1,0 +1,16 @@
+#nav{
+    position: fixed;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    top:0;
+    background-color:black;
+    color: white;
+    z-index: +1;
+
+}
+.nav-item{
+    color: white;
+}
+
+
