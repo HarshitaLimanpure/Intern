@@ -9,6 +9,7 @@ import EmpApp from './Internship/Emp-App/components/EmpApp'
 import CalendarApp from './Internship/Calendar-App/components/CalendarApp'
 import Footer from './Internship/Footer';
 import './App.css'
+import Calendar from './Internship/Calendar-App/components/Calendar';
 
 export default function App() {
   return (
@@ -22,7 +23,7 @@ export default function App() {
    <Route  path='/weather' element={<WeatherApp/>} />
   <Route  path='/news' element={<NewsApp/>} />
   <Route  path='/employee' element={<EmpApp/>} />
-  <Route  path='/calendar' element={<CalendarApp/>} />
+  <Route  path='/calendar' element={<Calendar/>} />
    </Routes>
  </div>
    <div>

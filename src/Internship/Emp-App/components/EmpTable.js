@@ -1,8 +1,33 @@
 import React from 'react';
+import Swal from 'sweetalert2';
+import CryptoJS from 'crypto-js';
 
-const EmpTable = ({ empDataArray, onDelete }) => {
+const EmpTable = ({ empDataArray, deleteEmployee }) => {
+  const secret = "@*%12%^%";
+
+  const handleDelete = email => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteEmployee(email);
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'Your Data has been deleted.',
+          icon: 'success'
+        });
+      }
+    });
+  };
+
   return (
-    <div className="col-8 mt-lg-5" id="second ">
+    <div className="col-8 mt-lg-5" id="second">
       <table className="table ml-2">
         <thead>
           <tr>
@@ -14,17 +39,13 @@ const EmpTable = ({ empDataArray, onDelete }) => {
           </tr>
         </thead>
         <tbody>
-          {empDataArray.map((a) => (
-            <tr key={a.email}>
-              <td>{a.fName}</td>
-              <td>{a.lName}</td>
-              <td>{a.email}</td>
-              <td>{a.pwd}</td>
-              <td>
-                <button className="btn btn-delete btn-danger fa fa-trash-o" onClick={() => onDelete(a.email)}>
-                  {/* Pass email as a parameter to onDelete */}
-                </button>
-              </td>
+          {empDataArray.map((emp, index) => (
+            <tr key={index}>
+              <td>{emp.fName}</td>
+              <td>{emp.lName}</td>
+              <td>{emp.email}</td>
+              <td>{CryptoJS.AES.encrypt(emp.pwd, secret).toString()}</td>
+              <td><button className="btn btn-delete btn-danger fa fa-trash-o" onClick={() => handleDelete(emp.email)}> </button></td>
             </tr>
           ))}
         </tbody>

@@ -4,28 +4,24 @@ import EmpTable from './EmpTable';
 
 const EmpApp = () => {
   const [empDataArray, setEmpDataArray] = useState([]);
-  const [emaildup, setEmailDup] = useState([]);
+  const [emaildup, setEmaildup] = useState([]);
 
-  const handleFormSubmit = (empData) => {
-    if (emaildup.includes(empData.email)) {
-      alert('The email you entered is already registered.');
-    } else {
-      setEmailDup((prevEmailDup) => [...prevEmailDup, empData.email]);
-      setEmpDataArray((prevEmpDataArray) => [...prevEmpDataArray, empData]);
-    }
+  const addEmployee = (empData) => {
+    setEmpDataArray([...empDataArray, empData]);
+    setEmaildup([...emaildup, empData.email]);
   };
 
-  const handleDelete = (email) => {
-    const updatedEmpDataArray = empDataArray.filter((a) => a.email !== email);
-    const updatedEmailDup = emaildup.filter((e) => e !== email);
-    setEmpDataArray(updatedEmpDataArray);
-    setEmailDup(updatedEmailDup);
+  const deleteEmployee = (email) => {
+    setEmpDataArray(empDataArray.filter(emp => emp.email !== email));
+    setEmaildup(emaildup.filter(e => e !== email));
   };
 
   return (
-    <div className="row">
-      <EmpForm onSubmit={handleFormSubmit} />
-      <EmpTable empDataArray={empDataArray} onDelete={handleDelete} />
+    <div className="container">
+      <div className="row mt-5">
+        <EmpForm addEmployee={addEmployee} emaildup={emaildup} />
+        <EmpTable empDataArray={empDataArray} deleteEmployee={deleteEmployee} />
+      </div>
     </div>
   );
 };

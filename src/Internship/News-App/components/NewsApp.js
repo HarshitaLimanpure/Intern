@@ -12,7 +12,7 @@ const NewsApp = () => {
   const [newsQuery, setNewsQuery] = useState('');
 
   // Functions to fetch news data
-  const fetchHeadlines = async () => {
+  var fetchHeadlines = async () => {
     const response = await fetch(`https://newsapi.org/v2/top-headlines?country=in&apiKey=d306689314d947369666fa221efc9554`);
     handleFetchResponse(response);
   };
@@ -42,17 +42,17 @@ const NewsApp = () => {
     handleFetchResponse(response);
   };
 
-  const fetchQueryNews = async () => {
+  var fetchQueryNews = async () => {
     if (!newsQuery || newsQuery.trim() === '') {
       // Handle empty search query
       return;
     }
 
-    const response = await fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(newsQuery)}&apiKey=d306689314d947369666fa221efc9554`);
+    var response = await fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(newsQuery)}&apiKey=d306689314d947369666fa221efc9554`);
     handleFetchResponse(response);
   };
 
-  const handleFetchResponse = async (response) => {
+  var handleFetchResponse = async (response) => {
     if (response.status >= 200 && response.status < 300) {
       const myJson = await response.json();
       setNewsDataArr(myJson.articles);
