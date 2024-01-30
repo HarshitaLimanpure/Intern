@@ -1,8 +1,13 @@
 
 #wdbg{
-    background-image: linear-gradient(-225deg, #231557 0%, #c28bfe 29%, #f43676 67%, #fff7006b 100%);
-border-color: #8EC5FC ;
-border-radius: ;
+    /* background-image: linear-gradient(-225deg, #231557 0%, #c28bfe 29%, #f43676 67%, #fff7006b 100%); */
+    background-color: rgba(245, 241, 237, 0.2); /* White color with 50% opacity */
+
+border-color: #f7f9fc ;
+
+
+
+border-radius: 12px;
 }
 
 .name{
